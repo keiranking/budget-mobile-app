@@ -2,6 +2,7 @@ function doGet() {
   return HtmlService
     .createTemplateFromFile('index')
     .evaluate()
+    .setFaviconUrl("https://img.icons8.com/ios/150/990000/add-receipt.png")
     .addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
@@ -14,7 +15,7 @@ function processForm(form) {
   return [amount, category];
 }
 
-const SPREADSHEET_ID = "XXXXX"; // extract from spreadsheet URL, eg https://docs.google.com/spreadsheets/d/XXXXX/edit
+const SPREADSHEET_ID = "XXXXX"; // extract from spreadsheet URL https://docs.google.com/spreadsheets/d/XXXXX/edit
 const SHEET_NAME = "Income & Expenses";
 
 function addToBudget(amt, cat) {

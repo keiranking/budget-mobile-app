@@ -1,6 +1,21 @@
 <link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --icon-size: 1.5rem;
+
+  --red: #990000;
+  --light-red: #f5e2df;
+
+  --black: #000000;
+  --gray: #aaaaaa;
+  --light-gray: #dddddd;
+  --white: #ffffff;
+
+  --focus-outline: 0 0 0px 1px var(--black);
+  --focus-shadow: 0 0 4px 2px var(--gray);
+}
+
 html {
   font-family: 'Libre Franklin', sans-serif;
   font-weight: 400;
@@ -14,24 +29,108 @@ fieldset {
 }
 
 ::placeholder {
-  color: #dddddd;
+  color: var(--light-gray);
 }
 
 .button {
   -webkit-appearance: none;
-  background-color: #990000;
+  background-color: var(--red);
   border: none;
   border-radius: 0.25rem;
-  color: #ffffff;
+  color: var(--white);
   font-family: 'Libre Franklin', sans-serif;
   font-size: 1rem;
   padding: 1rem;
 }
 
+.button:disabled {
+  opacity: 0.5;
+}
+
+.button:focus {
+  box-shadow: var(--focus-shadow);
+  outline: none;
+}
+
 .category {
-  color: #aaaaaa;
+  color: var(--gray);
   display: grid;
   grid-template-areas: "category";
+}
+
+.category__name {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  display: flex;
+  font-size: 0.8rem;
+  flex-direction: column;
+  grid-area: category;
+  justify-content: center;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+.category__name::before {
+  background: var(--icon, url("https://img.icons8.com/ios/100/aaaaaa/cancel-2.png"));
+  background-size: var(--icon-size) var(--icon-size);
+  content: "";
+  display: block;
+  height: var(--icon-size);
+  margin-bottom: 0.25rem;
+  width: var(--icon-size);
+}
+
+.category__name--car-and-bike::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/taxi.png");
+}
+
+.category__name--career::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/trophy.png");
+}
+
+.category__name--clothes::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/panties.png");
+}
+
+.category__name--grocery::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/vegetarian-food.png");
+}
+
+.category__name--health-and-body::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/dumbbell.png");
+}
+
+.category__name--household::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/toilet-paper.png");
+}
+
+.category__name--internet-and-phone::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/phone.png");
+}
+
+.category__name--keiran::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/user-male.png");
+}
+
+.category__name--on-the-go::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/salami-pizza.png");
+}
+
+.category__name--power-water-gas::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/idea.png");
+}
+
+.category__name--raisha::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/user-female.png");
+}
+
+.category__name--rent::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/home.png");
+}
+
+.category__name--train-and-bus::before {
+  --icon: url("https://img.icons8.com/ios/100/aaaaaa/subway.png");
 }
 
 .category__radio-button {
@@ -40,29 +139,88 @@ fieldset {
 }
 
 .category__radio-button:checked ~ .category__name {
-  color: black;
-  font-weight: 700;
+  background-color: var(--light-red);
+  color: var(--black);
 }
 
-.category__radio-button:checked ~ .category__name::after {
-  content: "\2713";
-  margin-left: 0.33rem;
+.category__radio-button:checked ~ .category__name::before {
+  background: var(--icon, url("https://img.icons8.com/ios/100/000000/cancel-2.png"));
+  background-size: var(--icon-size) var(--icon-size);
 }
 
-.category__name {
-  grid-area: category;
-  padding: 8px 0;
-  width: 100%;
+.category__radio-button:checked ~ .category__name--car-and-bike::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/taxi.png");
+}
+
+.category__radio-button:checked ~ .category__name--career::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/trophy.png");
+}
+
+.category__radio-button:checked ~ .category__name--clothes::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/panties.png");
+}
+
+.category__radio-button:checked ~ .category__name--grocery::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/vegetarian-food.png");
+}
+
+.category__radio-button:checked ~ .category__name--health-and-body::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/dumbbell.png");
+}
+
+.category__radio-button:checked ~ .category__name--household::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/toilet-paper.png");
+}
+
+.category__radio-button:checked ~ .category__name--internet-and-phone::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/phone.png");
+}
+
+.category__radio-button:checked ~ .category__name--keiran::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/user-male.png");
+}
+
+.category__radio-button:checked ~ .category__name--on-the-go::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/salami-pizza.png");
+}
+
+.category__radio-button:checked ~ .category__name--power-water-gas::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/idea.png");
+}
+
+.category__radio-button:checked ~ .category__name--raisha::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/user-female.png");
+}
+
+.category__radio-button:checked ~ .category__name--rent::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/home.png");
+}
+
+.category__radio-button:checked ~ .category__name--train-and-bus::before {
+  --icon: url("https://img.icons8.com/ios/100/000000/subway.png");
+}
+
+.category__radio-button:focus ~ .category__name {
+  box-shadow: var(--focus-outline);
+  outline: none;
 }
 
 .flash {
-  background-color: #990000;
-  color: white;
+  background-color: var(--gray);
+  color: var(--white);
   font-size: 0.85rem;
-  //font-weight: 700;
+  line-height: 1.1;
   text-align: center;
-  padding: 0.3rem 0 0.5rem;
+  padding: 0.5rem;
   width: 100%;
+}
+
+.flash--error {
+  background-color: var(--red);
+}
+
+.flash--hidden {
+  display: none;
 }
 
 .form {
@@ -80,38 +238,38 @@ fieldset {
 .form__input {
   -webkit-appearance: none;
   border: none;
-  border-bottom: 2px solid #dddddd;
+  border-bottom: 2px solid var(--light-gray);
   border-radius: 0;
   font-family: 'Libre Franklin', sans-serif;
   font-weight: 400;
-  padding: 1rem 0 0.25rem;
+  padding: 0;
   width: 100%;
 }
 
 .form__input:focus {
-  border-bottom: 2px solid black;
+  border-color: var(--black);
   outline: none;
 }
 
+.form__input:focus::placeholder {
+  opacity: 0;
+}
+
 .form__input--money {
-  font-size: 2rem;
-  font-variant-numeric: tabular-nums;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
 }
 
 .section {
-  margin: 0.5rem 1rem;
+  margin: 0.75rem 1rem;
 }
 
-.site {
-  //border-top: 0.2rem solid #e6b8af;
-}
-
-.two-column {
+.collection {
   display: grid;
-  grid-auto-flow: column;
-  grid-column-gap: 0.25rem;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(7, min-content);
+  grid-gap: 0.2rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0.5rem 0;
 }
 
 .u-display--none {

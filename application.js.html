@@ -10,22 +10,45 @@
   window.addEventListener('load', preventFormSubmit);
 
   function handleFormSubmit(form) {
+    form.submit_expense.disabled = true;
+    form.submit_expense.value = "Adding...";
     // run processForm, and if successful, then run successHandler with its output
-    google.script.run.withSuccessHandler(successHandler).processForm(form);
+    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).processForm(form);
   }
 
-  function successHandler(content) {
-    var form = document.getElementById("expense-form");
+  function onFailure(error) {
+    resetForm(false);
+
     var flash = document.getElementById("flash");
+    flash.innerHTML = error.message;
+    flash.classList.remove("flash--hidden");
+    flash.classList.add("flash--error");
+    setTimeout(function(){
+      flash.classList.add("flash-hidden");
+      flash.classList.remove("flash--error");
+    }, 6000);
+  }
 
-    form.reset();
+  function onSuccess(content) {
+    resetForm();
 
+    var flash = document.getElementById("flash");
     var amount, category;
     [amount, category] = content;
     flash.innerHTML = amount.toFixed(2) + " added to " + category;
     flash.classList.remove("u-display--none");
     setTimeout(function(){
       flash.classList.add("u-display--none");
-    }, 3000);
+    }, 4000);
+  }
+
+  function resetForm(reset = true) {
+    var form = document.getElementById("expense-form");
+
+    if (reset) {
+      form.reset();
+    }
+    form.submit_expense.disabled = false;
+    form.submit_expense.value = "Add expense to budget";
   }
 </script>
