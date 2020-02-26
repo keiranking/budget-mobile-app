@@ -1,0 +1,124 @@
+<link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,700&display=swap" rel="stylesheet">
+<style>
+html {
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 400;
+}
+
+fieldset {
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+::placeholder {
+  color: #dddddd;
+}
+
+.button {
+  -webkit-appearance: none;
+  background-color: #990000;
+  border: none;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.category {
+  color: #aaaaaa;
+  display: grid;
+  grid-template-areas: "category";
+}
+
+.category__radio-button {
+  grid-area: category;
+  opacity: 0;
+}
+
+.category__radio-button:checked ~ .category__name {
+  color: black;
+  font-weight: 700;
+}
+
+.category__radio-button:checked ~ .category__name::after {
+  content: "\2713";
+  margin-left: 0.33rem;
+}
+
+.category__name {
+  grid-area: category;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.flash {
+  background-color: #990000;
+  color: white;
+  font-size: 0.85rem;
+  //font-weight: 700;
+  text-align: center;
+  padding: 0.3rem 0 0.5rem;
+  width: 100%;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: auto;
+  grid-row-gap: 0.5rem;
+}
+
+@media(min-width: 720px) {
+  .form {
+    justify-items: start;
+  }
+}
+
+.form__input {
+  -webkit-appearance: none;
+  border: none;
+  border-bottom: 2px solid #dddddd;
+  border-radius: 0;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 400;
+  padding: 1rem 0 0.25rem;
+  width: 100%;
+}
+
+.form__input:focus {
+  border-bottom: 2px solid black;
+  outline: none;
+}
+
+.form__input--money {
+  font-size: 2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.section {
+  margin: 0.5rem 1rem;
+}
+
+.site {
+  //border-top: 0.2rem solid #e6b8af;
+}
+
+.two-column {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 0.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(7, min-content);
+}
+
+.u-display--none {
+  display: none;
+}
+
+.u-margin-top {
+  margin-top: 1rem;
+}
+</style>

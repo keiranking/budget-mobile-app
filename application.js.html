@@ -1,0 +1,31 @@
+<script>
+  function preventFormSubmit() {
+    var forms = document.querySelectorAll('form');
+    for (var i = 0; i < forms.length; i++) {
+      forms[i].addEventListener('submit', function(event) {
+        event.preventDefault();
+      });
+    }
+  }
+  window.addEventListener('load', preventFormSubmit);
+
+  function handleFormSubmit(form) {
+    // run processForm, and if successful, then run successHandler with its output
+    google.script.run.withSuccessHandler(successHandler).processForm(form);
+  }
+
+  function successHandler(content) {
+    var form = document.getElementById("expense-form");
+    var flash = document.getElementById("flash");
+
+    form.reset();
+
+    var amount, category;
+    [amount, category] = content;
+    flash.innerHTML = amount.toFixed(2) + " added to " + category;
+    flash.classList.remove("u-display--none");
+    setTimeout(function(){
+      flash.classList.add("u-display--none");
+    }, 3000);
+  }
+</script>

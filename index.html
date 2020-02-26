@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile("application.js").getContent() ?>
+
+    <?!= HtmlService.createHtmlOutputFromFile("application.css").getContent() ?>
+  </head>
+  <body>
+    <div class="site">
+      <section id="flash" class="flash u-display--none"></section>
+
+      <section class="section">
+        <h1 class="u-display--none">
+          New expense
+        </h1>
+
+        <form action="" method="POST" id="expense-form" class="form" onsubmit="handleFormSubmit(this)">
+          <label for="amount" class="u-display--none">Amount</label>
+          <input type="number" step="0.01" id="amount" name="amount" placeholder="0.00" required class="form__input form__input--money">
+
+          <fieldset>
+            <legend class="u-display--none">
+              Category
+            </legend>
+
+            <div class="two-column">
+              <div class="category">
+                <input type="radio" name="category" id="rent" value="Rent" class="category__radio-button">
+                <label for="rent" class="category__name">Rent</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="household" value="Household" class="category__radio-button" checked>
+                <label for="household" class="category__name">Household</label>
+              </div>
+
+              <div class="u-display--none">
+                <input type="radio" name="category" id="power-water-gas" value="Power, Water, Gas" class="category__radio-button">
+                <label for="power-water-gas" class="category__name">Power, Water, Gas</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="internet-and-phone" value="Internet & Phone" class="category__radio-button" checked>
+                <label for="internet-and-phone" class="category__name">Phone</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="car-and-bike" value="Car & Bike" class="category__radio-button">
+                <label for="car-and-bike" class="category__name">Car &amp; Bike</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="train-and-bus" value="Train & Bus" class="category__radio-button">
+                <label for="train-and-bus" class="category__name">Train &amp; Bus</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="grocery" value="Grocery" class="category__radio-button">
+                <label for="grocery" class="category__name">Grocery</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="on-the-go" value="On the Go" class="category__radio-button" checked>
+                <label for="on-the-go" class="category__name">On the Go</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="clothes" value="Clothes" class="category__radio-button">
+                <label for="clothes" class="category__name">Clothes</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="health-and-body" value="Health & Body" class="category__radio-button">
+                <label for="health-and-body" class="category__name">Health &amp; Body</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="career" value="Career" class="category__radio-button">
+                <label for="career" class="category__name">Career</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="computing" value="Computing" class="category__radio-button">
+                <label for="computing" class="category__name">Computing</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="raisha" value="Raisha" class="category__radio-button">
+                <label for="raisha" class="category__name">Raisha</label>
+              </div>
+
+              <div class="category">
+                <input type="radio" name="category" id="keiran" value="Keiran" class="category__radio-button">
+                <label for="keiran" class="category__name">Keiran</label>
+              </div>
+
+              <div class="u-display--none">
+                <input type="radio" name="category" id="other-expense" value="Other" class="category__radio-button">
+                <label for="other-expense" class="category__name">Other</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <input type="submit" id="submit-expense" value="Add expense to budget" class="button u-margin-top">
+        </form>
+      </section>
+    </div>
+  </body>
+</html>
