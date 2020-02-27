@@ -2,29 +2,32 @@ function doGet() {
   return HtmlService
     .createTemplateFromFile('index')
     .evaluate()
+    .setTitle('Add expense')
     .setFaviconUrl("https://img.icons8.com/ios/150/990000/add-receipt.png")
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no');
 }
 
 function processForm(form) {
   var amount = parseFloat(form.amount);
   var category = form.category;
+  var note = form.note.trim();
 
-  addToBudget(amount, category);
+  addToBudget(amount, category, note);
 
   return [amount, category];
 }
 
-const SPREADSHEET_ID = "XXXXX"; // extract from spreadsheet URL https://docs.google.com/spreadsheets/d/XXXXX/edit
+// const SPREADSHEET_ID = "XXXXX"; // production
+const SPREADSHEET_ID = "YYYYY"; // development
 const SHEET_NAME = "Income & Expenses";
 
-function addToBudget(amt, cat) {
-  var category = cat;
-  var amount = amt;
-
+function addToBudget(amount, category, note) {
   var sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
 
-  var categories = sheet.getRange("income_and_expenses_categories").getValues().map(category => category[0].trim());
+  var categories = sheet
+    .getRange("income_and_expenses_categories")
+    .getValues()
+    .map(category => category[0].trim());
   var now = new Date();
   var thisMonth = new Date(now.getFullYear(), now.getMonth(), 1).toDateString();
   var monthValues = sheet.getRange("income_and_expenses_headings").getValues()[0];
@@ -39,7 +42,22 @@ function addToBudget(amt, cat) {
   var row = categories.indexOf(category) + 1;
   var column = months.indexOf(thisMonth) + 1;
   var cell = sheet.getRange(row, column).getCell(1,1);
+
   cell.setFormula(concatenateAmount(cell, amount));
+  if (note) {
+    cell.setNote(appendNote(cell, amount, note));
+  }
+}
+
+function appendNote(cell, amount, note) {
+  var amountString = amount.toFixed(2);
+  var existingNote = cell.getNote();
+
+  if (existingNote) {
+    return existingNote.trim() + "\n" + amountString + " " + note;
+  } else {
+    return amountString + " " + note;
+  }
 }
 
 function concatenateAmount(cell, amount) {
