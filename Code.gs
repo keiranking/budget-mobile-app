@@ -1,3 +1,6 @@
+const ENV = PropertiesService.getScriptProperties();
+const SHEET_NAME = "Income & Expenses";
+
 function doGet() {
   return HtmlService
     .createTemplateFromFile('index')
@@ -17,12 +20,8 @@ function processForm(form) {
   return [amount, category];
 }
 
-// const SPREADSHEET_ID = "XXXXX"; // production
-const SPREADSHEET_ID = "YYYYY"; // development
-const SHEET_NAME = "Income & Expenses";
-
 function addToBudget(amount, category, note) {
-  var sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  var sheet = SpreadsheetApp.openById(ENV.getProperty('SPREADSHEET_ID')).getSheetByName(SHEET_NAME);
 
   var categories = sheet
     .getRange("income_and_expenses_categories")

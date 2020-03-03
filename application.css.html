@@ -21,6 +21,20 @@ html {
   font-weight: 400;
 }
 
+details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details > summary:focus {
+  box-shadow: var(--focus-shadow);
+  outline: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none; // hides marker in Webkit
+}
+
 fieldset {
   background-color: transparent;
   border: 0;
@@ -205,7 +219,27 @@ fieldset {
   display: grid;
   grid-gap: 0.2rem;
   grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 0.5rem;
+}
+
+.details-toggle > .details-toggle__toggler::before {
+  content: "Show ";
+}
+
+.details-toggle[open] > .details-toggle__toggler::before {
+  content: "Hide ";
+}
+
+.details-toggle__toggler {
+  background-color: var(--light-gray);
+  border-radius: 0 0 0.25rem 0.25rem;
+  color: var(--white);
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  margin: 0;
+  padding: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 0;
 }
 
 .flash {
@@ -265,12 +299,13 @@ fieldset {
   opacity: 0;
 }
 
-.form__input--money {
+.form__input--large {
   font-size: 2.5rem;
   font-weight: 300;
+  padding: 0;
 }
 
-.form__input--note {
+.form__input--optional {
   border: 1px dashed var(--light-gray);
   font-size: 0.8rem;
   line-height: 1.1rem;
@@ -287,5 +322,9 @@ fieldset {
 
 .u-margin-top {
   margin-top: 1rem;
+}
+
+.u-margin-top--s {
+  margin-top: 0.5rem;
 }
 </style>
